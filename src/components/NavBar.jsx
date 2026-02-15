@@ -5,12 +5,12 @@ export default function NavBar() {
   const navBg = useTransform(
     scrollYProgress,
     [0, 0.05],
-    ['rgba(10,10,15,0)', 'rgba(10,10,15,0.85)']
+    ['rgba(8,8,26,0)', 'rgba(8,8,26,0.88)']
   );
   const navBorder = useTransform(
     scrollYProgress,
     [0, 0.05],
-    ['rgba(0,240,255,0)', 'rgba(0,240,255,0.1)']
+    ['rgba(139,92,246,0)', 'rgba(139,92,246,0.15)']
   );
 
   return (

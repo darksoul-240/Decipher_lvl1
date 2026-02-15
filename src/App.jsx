@@ -43,6 +43,7 @@ function App() {
     <div ref={containerRef} className="relative min-h-screen">
       {/* Overlays */}
       <div className="scanline-overlay" />
+      <div className="aurora-overlay" />
       <ParticleField />
 
       {/* Nav */}
@@ -125,17 +126,19 @@ function App() {
 
       {/* ═══════════ STATS SECTION ═══════════ */}
       <section className="relative z-10 py-24 px-6">
+        {/* Gradient divider */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-violet/20 to-transparent" />
         <div className="max-w-5xl mx-auto">
           {/* Section Header */}
           <div className="flex items-center gap-4 mb-12 justify-center">
-            <div className="h-[1px] flex-1 max-w-24 bg-gradient-to-r from-transparent to-neon-cyan/20" />
+            <div className="h-[1px] flex-1 max-w-24 bg-gradient-to-r from-transparent to-neon-violet/20" />
             <h2
               className="text-[11px] tracking-[0.5em] uppercase text-ghost/40"
               style={{ fontFamily: 'Rajdhani, sans-serif' }}
             >
               SYSTEM DIAGNOSTICS
             </h2>
-            <div className="h-[1px] flex-1 max-w-24 bg-gradient-to-l from-transparent to-neon-cyan/20" />
+            <div className="h-[1px] flex-1 max-w-24 bg-gradient-to-l from-transparent to-neon-violet/20" />
           </div>
 
           <SystemStats />
@@ -144,6 +147,8 @@ function App() {
 
       {/* ═══════════ CHALLENGE NODES SECTION ═══════════ */}
       <section id="nodes" className="relative z-10 py-20 px-6">
+        {/* Subtle ambient glow behind cards */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 40% at 50% 40%, rgba(139,92,246,0.04), transparent)' }} />
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <motion.div
@@ -183,6 +188,8 @@ function App() {
 
       {/* ═══════════ INTEL / CTA SECTION ═══════════ */}
       <section id="intel" className="relative z-10 py-32 px-6">
+        {/* Gradient divider */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-magenta/15 to-transparent" />
         <div className="max-w-4xl mx-auto text-center">
           {/* Mission Brief */}
           <motion.div

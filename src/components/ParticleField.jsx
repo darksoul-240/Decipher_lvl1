@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 
 const PARTICLE_COUNT = 35;
-const COLORS = ['#00f0ff', '#ff00e5', '#39ff14', '#ffae00'];
+const COLORS = ['#a855f7', '#d946ef', '#8b5cf6', '#00f0ff', '#7c3aed'];
 const CONNECTION_DIST = 100;
 const CONNECTION_DIST_SQ = CONNECTION_DIST * CONNECTION_DIST;
 
@@ -108,7 +108,7 @@ export default function ParticleField() {
           const dSq = dx * dx + dy * dy;
           if (dSq < CONNECTION_DIST_SQ) {
             const alpha = 0.05 * (1 - dSq / CONNECTION_DIST_SQ);
-            ctx.strokeStyle = `rgba(0,240,255,${alpha})`;
+            ctx.strokeStyle = `rgba(139,92,246,${alpha})`;
             ctx.beginPath();
             ctx.moveTo(pts[i].x, pts[i].y);
             ctx.lineTo(pts[j].x, pts[j].y);

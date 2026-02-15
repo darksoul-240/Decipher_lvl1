@@ -24,7 +24,7 @@ export default function HexGrid() {
             points="30,0 60,17 60,52 30,69 0,52 0,17"
             transform={`translate(${hex.x}, ${hex.y})`}
             fill="none"
-            stroke="rgba(0, 240, 255, 0.12)"
+            stroke="rgba(168, 85, 247, 0.12)"
             strokeWidth="0.5"
             style={{
               animation: `hex-pulse ${hex.duration}s ease-in-out ${hex.delay}s infinite`,

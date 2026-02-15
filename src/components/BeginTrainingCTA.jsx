@@ -36,7 +36,7 @@ export default function BeginTrainingCTA({ onClick }) {
         {/* Animated border glow on hover */}
         <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
-            boxShadow: '0 0 15px rgba(0,240,255,0.3), 0 0 40px rgba(0,240,255,0.1), inset 0 0 15px rgba(0,240,255,0.05)',
+            boxShadow: '0 0 15px rgba(139,92,246,0.35), 0 0 40px rgba(168,85,247,0.12), inset 0 0 15px rgba(139,92,246,0.06)',
           }}
         />
 

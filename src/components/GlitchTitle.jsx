@@ -68,14 +68,14 @@ export default function GlitchTitle({ text = 'THE GAUNTLET' }) {
         transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="mt-4 flex items-center gap-4"
       >
-        <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-neon-cyan to-transparent opacity-40" />
+        <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-neon-violet to-transparent opacity-40" />
         <span
           className="text-xs sm:text-sm tracking-[0.4em] uppercase text-neon-cyan/70"
           style={{ fontFamily: 'Rajdhani, sans-serif' }}
         >
           Level 1 — The Cryptographic Gauntlet
         </span>
-        <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-neon-cyan to-transparent opacity-40" />
+        <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-neon-violet to-transparent opacity-40" />
       </motion.div>
     </motion.div>
   );
