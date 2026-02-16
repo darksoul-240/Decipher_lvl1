@@ -1,48 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-
-const challenges = [
-  {
-    id: 1,
-    title: 'CIPHER BREACH',
-    level: 'SEC-LEVEL α',
-    status: 'unlocked',
-    description: 'Decode the encrypted signal to bypass the outer firewall.',
-    threat: 'LOW',
-    icon: '◈',
-    accent: '#00f0ff',
-  },
-  {
-    id: 2,
-    title: 'QUANTUM LOCK',
-    level: 'SEC-LEVEL β',
-    status: 'unlocked',
-    description: 'Navigate quantum-encrypted pathways to reach the core.',
-    threat: 'MEDIUM',
-    icon: '◇',
-    accent: '#39ff14',
-  },
-  {
-    id: 3,
-    title: 'NEURAL MAZE',
-    level: 'SEC-LEVEL γ',
-    status: 'locked',
-    description: 'Infiltrate the neural network defense grid.',
-    threat: 'HIGH',
-    icon: '⬡',
-    accent: '#ffae00',
-  },
-  {
-    id: 4,
-    title: 'ZERO-DAY',
-    level: 'SEC-LEVEL Ω',
-    status: 'locked',
-    description: 'Exploit the final vulnerability. No second chances.',
-    threat: 'CRITICAL',
-    icon: '◆',
-    accent: '#ff073a',
-  },
-];
+import { CHALLENGES_CONFIG } from '../config/challengesConfig';
 
 function getThreatColor(threat) {
   switch (threat) {
@@ -54,13 +12,13 @@ function getThreatColor(threat) {
   }
 }
 
-export default function ChallengeNodes({ onNodeInteract }) {
+export default function ChallengeNodes({ activeSlotId, onNodeInteract, onStartChallenge }) {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl mx-auto">
-      {challenges.map((node, index) => {
-        const isLocked = node.status === 'locked';
+      {CHALLENGES_CONFIG.map((node, index) => {
+        const isLocked = node.id !== activeSlotId;
         const isHovered = hoveredId === node.id;
 
         return (
@@ -90,6 +48,7 @@ export default function ChallengeNodes({ onNodeInteract }) {
             onClick={() => {
               if (!isLocked) {
                 onNodeInteract?.(`ACCESS GRANTED → ${node.title} [${node.level}]`);
+                onStartChallenge?.(node);
               } else {
                 onNodeInteract?.(`ACCESS DENIED → ${node.title} [ENCRYPTED]`);
               }
@@ -104,7 +63,7 @@ export default function ChallengeNodes({ onNodeInteract }) {
                 : `linear-gradient(135deg, ${node.accent}15, transparent 40%, transparent 60%, ${node.accent}08)`,
             }}
           >
-            {/* Static border glow — no layoutId to avoid cross-card layout recalc */}
+            {/* Border glow on hover (unlocked only) */}
             <div
               className="absolute inset-0 rounded-xl transition-opacity duration-300"
               style={{
@@ -120,8 +79,9 @@ export default function ChallengeNodes({ onNodeInteract }) {
                   <span
                     className="text-2xl inline-block transition-transform duration-300"
                     style={{
-                      color: node.accent,
+                      color: isLocked ? 'var(--color-ghost)' : node.accent,
                       transform: isHovered ? 'rotate(10deg)' : 'rotate(0deg)',
+                      filter: isLocked ? 'grayscale(1) opacity(0.5)' : 'none',
                     }}
                   >
                     {node.icon}
@@ -151,7 +111,7 @@ export default function ChallengeNodes({ onNodeInteract }) {
                   }
                 `}>
                   <span className={`w-1.5 h-1.5 rounded-full ${isLocked ? 'bg-neon-red' : 'bg-neon-green'} ${!isLocked ? 'animate-pulse' : ''}`} />
-                  {node.status}
+                  {isLocked ? 'LOCKED' : 'UNLOCKED'}
                 </div>
               </div>
 
@@ -179,13 +139,13 @@ export default function ChallengeNodes({ onNodeInteract }) {
                       transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
                     }}
                   >
-                    ENTER →
+                    START DECRYPTION →
                   </div>
                 )}
 
                 {isLocked && (
                   <div className="text-[10px] tracking-widest uppercase text-ghost/30 flex items-center gap-1">
-                    🔒 ENCRYPTED
+                    🔒 ACCESS DENIED
                   </div>
                 )}
               </div>
